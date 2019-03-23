@@ -1,2 +1,2 @@
 # iOSSharing
-Knowledge points about iOS, update every Saturday.
+Knowledge points about iOS, weekly update.
