@@ -114,7 +114,7 @@ bnum | A bit field of num bits
 
 [代码](https://github.com/Adrenine/ForwardInvocation)
 
-![](https://user-gold-cdn.xitu.io/2019/3/28/169c2f8e872c748b?w=780&h=408&f=png&s=37142)
+![流程](https://i.loli.net/2019/03/29/5c9dd0956f0fd.png)
 
 类方法：
 ![类方法](https://user-gold-cdn.xitu.io/2019/3/28/169c2fb8e0754da2?w=822&h=1036&f=png&s=134393)
