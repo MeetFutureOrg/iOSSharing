@@ -155,8 +155,8 @@ typedef id (*IMP)(id, SEL, ...);
 答：当需要执行某个实例方法的时候（类方法类似），oc会先去该类的方法的缓存列表里面查找，若找到了，则执行，否则，去该类的方法列表中查找是否存在该方法，存在，执行该方法并更新方法缓存列表，否则，去该父类缓存以及父类方法列表查找，直到根类，若还未找到，则启用动态解析以及消息转发流程，若还是失败，报unrecognized selector异常
 
 
-![](https://user-gold-cdn.xitu.io/2019/3/23/169aaa87c8593084?w=1410&h=2926&f=jpeg&s=687328)
 
+![](https://user-gold-cdn.xitu.io/2019/3/28/169c36aaf63edd79?w=1410&h=2926&f=png&s=590807)
 感谢大佬提供的流程图
 
 ***
@@ -167,3 +167,8 @@ typedef id (*IMP)(id, SEL, ...);
 * [简书 - Adrenine](https://www.jianshu.com/u/b20be2dcb0c3)
 * [Blog - Adrenine](https://adrenine.github.io/)
 * [Github - Adrenine](https://github.com/Adrenine)
+ 
+**联合编辑：**
+* [掘金 - oneofai](https://juejin.im/user/596490e6f265da6c306535c4)
+* [Blog - oneofai](https://oneofai.github.io/)
+* [Github - oneofai](https://github.com/oneofai)
