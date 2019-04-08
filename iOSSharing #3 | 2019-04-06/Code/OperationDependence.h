@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)barrier;
 - (void)groupNotifier;
 - (void)operationDependency;
+- (void)semaphore;
 
 @end
 

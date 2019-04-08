@@ -265,6 +265,58 @@ dispatch_group_notify(group, queue, ^{  // 监听组里所有线程完成的情�
     [queue addOperation:operation3];
 ```
 
+* semaphore
+
+```objc
+/*
+比如说我们需要请求三张元素图，拼合成一张海报。我们需要先对元素图进行请求而后才能合成海报，这就形成了依赖关系。我们通过semaphore限制资源数为3，供请求元素图使用，待请求完成后，释放信号量，便能走到合成的耗时操作。
+*/
+
+//创建信号量，参数：信号量的初值，如果小于0则会返回NULL
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(3);
+    
+//元素图1
+dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    //等待降低信号量
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"请求第1张元素图");
+    sleep(1);
+    NSLog(@"第1张元素图Get");
+    //提高信号量
+    dispatch_semaphore_signal(semaphore);
+});
+    
+//元素图2
+dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"请求第2张元素图");
+    sleep(1);
+    NSLog(@"第2张元素图Get");
+    dispatch_semaphore_signal(semaphore);
+});
+    
+//元素图3
+dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"请求第3张元素图");
+    sleep(1);
+    NSLog(@"第3张元素图Get");
+    dispatch_semaphore_signal(semaphore);
+});
+    
+//合成海报
+dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"合成海报");
+    sleep(1);
+    NSLog(@"海报Get");
+    dispatch_semaphore_signal(semaphore);
+});
+```
+
+**注意:**</br>
+正常的使用顺序是**先降低然后再提高**，这两个函数通常成对使用。
+
 ***
 
 ## 联系方式
