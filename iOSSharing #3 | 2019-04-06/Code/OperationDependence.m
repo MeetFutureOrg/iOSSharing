@@ -77,4 +77,27 @@
     });
 }
 
+- (void)operationDependency {
+    //创建队列
+    NSOperationQueue *queue=[[NSOperationQueue alloc] init];
+    //创建操作
+    NSBlockOperation *operation1=[NSBlockOperation blockOperationWithBlock:^(){
+        NSLog(@"执行第1次操作，线程：%@",[NSThread currentThread]);
+    }];
+    NSBlockOperation *operation2=[NSBlockOperation blockOperationWithBlock:^(){
+        NSLog(@"执行第2次操作，线程：%@",[NSThread currentThread]);
+    }];
+    NSBlockOperation *operation3=[NSBlockOperation blockOperationWithBlock:^(){
+        NSLog(@"执行第3次操作，线程：%@",[NSThread currentThread]);
+    }];
+    //添加依赖
+    [operation1 addDependency:operation2];
+    [operation2 addDependency:operation3];
+    //将操作添加到队列中去
+    [queue addOperation:operation1];
+    [queue addOperation:operation2];
+    [queue addOperation:operation3];
+    
+}
+
 @end

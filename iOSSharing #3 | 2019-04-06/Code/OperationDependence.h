@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OperationDependence : NSObject
 
 - (void)barrier;
+- (void)groupNotifier;
+- (void)operationDependency;
 
 @end
 
