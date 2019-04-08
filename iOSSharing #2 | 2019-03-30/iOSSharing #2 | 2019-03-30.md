@@ -130,17 +130,17 @@ const char *types含义表：</br>
 ***
 
 ## 联系方式
-**邮箱：** xiebangyao_1994@163.com
-**邮箱：** holaux@gmail.com</br>
-**相关账号：**
+**邮箱：** xiebangyao_1994@163.com</br>
 * [掘金 - Adrenine](https://juejin.im/user/57c39bfb79bc440063e5ad44)
 * [简书 - Adrenine](https://www.jianshu.com/u/b20be2dcb0c3)
 * [Blog - Adrenine](https://adrenine.github.io/)
 * [Github - Adrenine](https://github.com/Adrenine)
  
-**联合编辑：**
+**邮箱：** holaux@gmail.com</br>
 * [掘金 - oneofai](https://juejin.im/user/596490e6f265da6c306535c4)
 * [Blog - oneofai](https://oneofai.github.io/)
 * [Github - oneofai](https://github.com/oneofai)
-</br>
+
+**邮箱：** ledahapple@icloud.com</br>
 * [Github - ledah217](https://github.com/ledah217)
+* [Notion - 217](https://www.notion.so/217)
