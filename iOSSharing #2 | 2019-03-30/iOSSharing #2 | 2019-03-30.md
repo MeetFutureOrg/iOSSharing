@@ -12,7 +12,7 @@
 答：
 见上一期《iOS Sharing #01 | 2019-03-23》第5问
 
-[5、实例方法去哪里找？](https://juejin.im/post/5c94ad73f265da60c833e86d)
+[5、实例方法去哪里找？](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%231%20%7C%202019-03-23/iOSSharing%20%231%20%7C%202019-03-23.md)
 
 ***
 <h2 id="22">2、isa指针有几种类型么？</h2>
