@@ -6,6 +6,7 @@
 ## [5、如何实现一个完整的单例？](#25)
 
 ***
+
 <h2 id="21">1、请用一句话概述分类的概念，并阐述分类的优点。</h2>
 答：
 
@@ -82,7 +83,9 @@ NSLog(@"%@",NSStringFromClass([[array copy] class]));
 ```
 输出：
 ![在这里插入图片描述](https://i.loli.net/2019/04/12/5cb024c78c620.png)
+
 ***
+
 #### 深拷贝：生成一个新对象，对象内容相同（ 除浅拷贝那种情况，其他都是深拷贝）
 * 可变对象的可变拷贝 
 	
@@ -126,7 +129,9 @@ NSLog(@"%@",NSStringFromClass([[array mutableCopy] class]));
 
 输出：
 ![在这里插入图片描述](https://i.loli.net/2019/04/12/5cb025b3269ed.png)
+
 *** 
+
 #### 总结：
 **除不可变对象的不可变拷贝为浅拷贝，其余都是深拷贝**
 ![在这里插入图片描述](https://i.loli.net/2019/04/12/5cb026d4b7035.png)
@@ -142,6 +147,7 @@ NSLog(@"%@",NSStringFromClass([[array mutableCopy] class]));
 ```
 
 ***
+
 <h2 id="25">5、如何实现一个完整的单例？</h2>
 答：
 
