@@ -21,3 +21,10 @@
 #### 3、为什么需要在主线程更新UI？
 #### 4、iOS中如何用多线程实现多读单写?
 #### 5、iOS多线程中有多少种方式可以做到等待前面线程执行完毕再执行后面的线程？
+
+### [iOS Sharing #04 | 2019-04-12](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%233%20%7C%202019-04-06/iOSSharing%20%233%20%7C%202019-04-06.md)
+#### 1、请用一句话概述分类的概念，并阐述分类的优点。
+#### 2、多个同宿主分类中的都重写了一个同名方法，哪个分类的同名方法会生效？为什么？
+#### 3、@property(copy)NSMutableArray *array这样声明属性会出现什么问题？
+#### 4、说一说KVO在重写NSKVONotifying对象的setter方法中，添加了哪两个关键方法？
+#### 5、如何实现一个完整的单例？
