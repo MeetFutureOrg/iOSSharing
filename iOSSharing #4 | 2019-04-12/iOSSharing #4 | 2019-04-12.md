@@ -21,6 +21,7 @@
 答：
 运行时在处理分类时会倒序遍历分类数组，最先访问最后编译的类，最后编译的类的同名方法最终生效。
 下面我们来看看源码解析：
+
 ```objc
 int mcount = 0; // 记录方法的数量
 int propcount = 0; // 记录属性的数量
@@ -40,14 +41,15 @@ while (i--) { // 从后往前遍历,保证先取最后编译的类
     property_list_t *proplist = entry.cat->propertiesForMeta(isMeta);
     if (proplist) {
         proplists[propcount++] = proplist; // 将属性列表放入 proplists 属性列表数组中
-    }
-// 取出分类中遵循的协议列表
+        }
+    // 取出分类中遵循的协议列表
     protocol_list_t *protolist = entry.cat->protocols;
     if (protolist) {
         protolists[protocount++] = protolist; // 将协议列表放入 protolists 协议列表数组中
     }
 } 
 ```
+
 ***
 <h2 id="21">3、@property(copy)NSMutableArray *array这样声明属性会出现什么问题？</h2>
 答：
@@ -56,13 +58,16 @@ NSMutableArray经过copy修饰后是NSArray（不可变数组）。
 ***
 <h2 id="21">4、说一说KVO在重写NSKVONotifying对象的setter方法中，添加了哪两个关键方法？</h2>
 答：
+
 ```objc
 -(void)willChangeValueForKey:(NSString *)key;
 -(void)didChangeValueForKey:(NSString *)key;
 ```
+
 ***
 <h2 id="21">5、如何实现一个完整的单例？</h2>
 答：
+
 ```objc
 #import "SingletonSample.h"
 
@@ -93,8 +98,8 @@ NSMutableArray经过copy修饰后是NSArray（不可变数组）。
 }
 
 @end
-
 ```
+
 ***
 
 ## 联系方式
