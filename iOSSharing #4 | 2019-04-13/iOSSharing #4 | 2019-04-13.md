@@ -19,7 +19,7 @@
 
 ***
 
-<h2 id="21">2、多个同宿主分类中的都重写了一个同名方法，哪个分类的同名方法会生效？为什么？</h2>
+<h2 id="22">2、多个同宿主分类中的都重写了一个同名方法，哪个分类的同名方法会生效？为什么？</h2>
 答：
 
 运行时在处理分类时会倒序遍历分类数组，最先访问最后编译的类，最后编译的类的同名方法最终生效。
@@ -59,13 +59,81 @@ while (i--) { // 从后往前遍历,保证先取最后编译的类
 ```
 
 ***
-<h2 id="21">3、@property(copy)NSMutableArray *array这样声明属性会出现什么问题？</h2>
+
+<h2 id="23">3、@property(copy)NSMutableArray *array这样声明属性会出现什么问题？</h2>
 答：
 
-NSMutableArray经过copy修饰后是NSArray（不可变数组）。
-如果对经copy修饰后的可变数组进行增删改的操作，实际上是在操作不可变数组，从而会引起程序异常，引起Crash。
+* NSMutableArray经过copy修饰后是NSArray（不可变数组）。如果对经copy修饰后的可变数组进行增删改的操作，实际上是在操作不可变数组，从而会引起程序异常，引起Crash。
+* 不写原子性修饰词默认使用atomic，而atomic性能比nonatomic差很多。
+
+### 扩展：
+#### 浅拷贝：指针拷贝，不生成新对象
+* 不可变对象的不可变拷贝
+
+```objectivec
+NSArray *array = [NSArray array];
+
+//相同地址        
+NSLog(@"%p",array);
+NSLog(@"%p",[array copy]);
+
+// __NSArray0 (不可变数组)      
+NSLog(@"%@",NSStringFromClass([[array copy] class]));
+```
+输出：
+![在这里插入图片描述](https://i.loli.net/2019/04/12/5cb024c78c620.png)
 ***
-<h2 id="21">4、说一说KVO在重写NSKVONotifying对象的setter方法中，添加了哪两个关键方法？</h2>
+#### 深拷贝：生成一个新对象，对象内容相同（ 除浅拷贝那种情况，其他都是深拷贝）
+* 可变对象的可变拷贝 
+	
+```objectivec
+NSMutableArray *mutArray = [NSMutableArray array];
+
+//输出不同地址   
+NSLog(@"%p",mutArray);
+NSLog(@"%p",[mutArray mutableCopy]);
+
+// __NSArrayM （可变数组）
+NSLog(@"%@",NSStringFromClass([[mutArray mutableCopy] class]));
+```
+输出：
+![在这里插入图片描述](https://i.loli.net/2019/04/12/5cb0253253451.png)
+
+* 可变对象的不可变拷贝	
+```objectivec
+NSMutableArray *mutArray = [NSMutableArray array];
+//不同地址      
+NSLog(@"%p",mutArray);
+NSLog(@"%p",[mutArray copy]);
+
+// __NSArray0
+NSLog(@"%@",NSStringFromClass([[mutArray copy] class]));
+```
+输出：
+![在这里插入图片描述](https://i.loli.net/2019/04/12/5cb0257999966.png)
+
+* 不可变对象的可变拷贝	
+
+```objectivec
+NSArray *array = [NSArray array];
+
+//不同对象  
+NSLog(@"%p",array);
+NSLog(@"%p",[array mutableCopy]);
+// __NSArrayM    
+NSLog(@"%@",NSStringFromClass([[array mutableCopy] class]));
+```
+
+输出：
+![在这里插入图片描述](https://i.loli.net/2019/04/12/5cb025b3269ed.png)
+*** 
+#### 总结：
+**除不可变对象的不可变拷贝为浅拷贝，其余都是深拷贝**
+![在这里插入图片描述](https://i.loli.net/2019/04/12/5cb026d4b7035.png)
+
+***
+
+<h2 id="24">4、说一说KVO在重写NSKVONotifying对象的setter方法中，添加了哪两个关键方法？</h2>
 答：
 
 ```objc
@@ -74,7 +142,7 @@ NSMutableArray经过copy修饰后是NSArray（不可变数组）。
 ```
 
 ***
-<h2 id="21">5、如何实现一个完整的单例？</h2>
+<h2 id="25">5、如何实现一个完整的单例？</h2>
 答：
 
 ```objc
