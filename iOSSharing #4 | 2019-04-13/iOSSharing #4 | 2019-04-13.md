@@ -9,16 +9,16 @@
 <h2 id="21">1、请用一句话概述分类的概念，并阐述分类的优点。</h2>
 答：
 
-概述
-
-* Objective-C中的分类是修饰模式的一种具体实现，主要作用是在不改变原有类的基础上，动态的为类扩展功能（添加方法）。
+概述：Objective-C中的分类是修饰模式的一种具体实现，主要作用是在不改变原有类的基础上，动态的为类扩展功能（添加方法）。
 
 分类的优点
 * 声明私有方法
 * 分解庞大的类文件
 * 将Framework私有方法公开化
 * 模拟多继承
+
 ***
+
 <h2 id="21">2、多个同宿主分类中的都重写了一个同名方法，哪个分类的同名方法会生效？为什么？</h2>
 答：
 
@@ -32,8 +32,10 @@ int propcount = 0; // 记录属性的数量
 int protocount = 0; // 记录协议的数量
 int i = cats->count; // 获取分类个数
 bool fromBundle = NO; // 记录是否是从 bundle 中取的
+
 while (i--) { // 从后往前遍历,保证先取最后编译的类
-    auto&; entry = cats->list[i]; // 分类,locstamped_category_t 类型
+    auto&; 
+    entry = cats->list[i]; // 分类,locstamped_category_t 类型
     
     // 取出分类中的方法列表;如果是元类,取得的是类方法列表;否则取得的是实例方法列表
     method_list_t *mlist = entry.cat->methodsForMeta(isMeta);
@@ -41,11 +43,13 @@ while (i--) { // 从后往前遍历,保证先取最后编译的类
         mlists[mcount++] = mlist; // 将方法列表放入 mlists 方法列表数组中
         fromBundle |= entry.hi->isBundle(); // 分类的头部信息中存储了是否是 bundle,将其记住
     }
+
     // 取出分类中的属性列表,如果是元类,取得是nil
     property_list_t *proplist = entry.cat->propertiesForMeta(isMeta);
     if (proplist) {
         proplists[propcount++] = proplist; // 将属性列表放入 proplists 属性列表数组中
-        }
+    }
+
     // 取出分类中遵循的协议列表
     protocol_list_t *protolist = entry.cat->protocols;
     if (protolist) {
