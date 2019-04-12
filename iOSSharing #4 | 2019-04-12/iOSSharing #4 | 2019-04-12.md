@@ -36,13 +36,11 @@ while (i--) { // 从后往前遍历,保证先取最后编译的类
         mlists[mcount++] = mlist; // 将方法列表放入 mlists 方法列表数组中
         fromBundle |= entry.hi->isBundle(); // 分类的头部信息中存储了是否是 bundle,将其记住
     }
-
     // 取出分类中的属性列表,如果是元类,取得是nil
     property_list_t *proplist = entry.cat->propertiesForMeta(isMeta);
     if (proplist) {
         proplists[propcount++] = proplist; // 将属性列表放入 proplists 属性列表数组中
     }
-    
 // 取出分类中遵循的协议列表
     protocol_list_t *protolist = entry.cat->protocols;
     if (protolist) {
