@@ -36,3 +36,10 @@
 #### 3. HTTPS 加密过程与原理
 #### 4. Socket 原理
 #### 5. 关于 TCP 的慢启动特性
+
+### [#05 | 2019-04-21](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%236%20%7C%202019-04-26/iOSSharing%20%236%20%7C%202019-04-26.md)
+#### 1. block的循环引用是如何造成的？
+#### 2. 使用UIAnimation的block回调时，需不需要使用__weak避免循环引用？为什么？
+#### 3. block属性是否可以用strong修饰？
+#### 4. 什么场景下才需要对变量使用__block?
+#### 5. 运行以下GCD多线程代码，控制台将打印什么?
