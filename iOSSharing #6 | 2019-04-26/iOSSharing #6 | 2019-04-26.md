@@ -134,6 +134,7 @@ Block();
 ```
 
 <h2 id="35">5. 运行以下GCD多线程代码，控制台将打印什么?</h2>
+
 ```objectivec
 dispatch_queue_t gQueue= dispatch_get_global_queue(0, 0);
     
