@@ -107,6 +107,7 @@ UIKit将动画直接集成到UIView的类中，当内部的一些属性发生改
 ~~那么这个时候问题就来了，strong属性修饰符并不能拷贝，就会有野指针错区的可能，造成Crash。这种情况很少见，但是不代表不可能发生，所以最好还是使用copy属性修饰符。~~
     
 更正：
+
 针对Block属性修饰符的问题在撰写的时候的确没有考虑周全，我们将在以下予以更正和解答。
 首先，在以下情形中block会自动从栈拷贝到堆：
 1、当 block 调用 copy 方法时，如果 block 在栈上，会被拷贝到堆上；
@@ -116,7 +117,9 @@ UIKit将动画直接集成到UIView的类中，当内部的一些属性发生改
 
 那针对上述自动拷贝的情况我们做一个实验：
 ARC下strong修饰block，且不引用外部变量，block类型为__NSGlobalBlock
+![](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%236%20%7C%202019-04-26/block_test_1.png)
 ARC下strong修饰block，引入外部变量，block类型为__NSMallocBlock
+![](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%236%20%7C%202019-04-26/block_test_2.png)
 
 所以由此就可以理解为ARC下strong修饰的block并没有处于栈区的可能，也就不存在作用域结束栈区内容销毁野指针的问题了。
 但是为了保证修饰符和block特性的一致性，使用copy修饰符仍然是最为合适的。
