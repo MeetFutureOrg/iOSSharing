@@ -46,8 +46,8 @@ int main(int argc, char * argv[]) {
 struct __main_block_impl_0 {
   struct __block_impl impl;
   struct __main_block_desc_0* Desc;
-  RMPerson *__strong person;
-  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, Light *__strong _loveLight, int flags=0) : loveLight(_loveLight) {
+  Light *loveLight;
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, Light *_loveLight, int flags=0) : loveLight(_loveLight) {
     impl.isa = &_NSConcreteStackBlock;
     impl.Flags = flags;
     impl.FuncPtr = fp;
@@ -56,15 +56,12 @@ struct __main_block_impl_0 {
 };
 
 static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  Light *__strong loveLight = __cself->loveLight; // bound by copy
-
-            NSLog((NSString *)&__NSConstantStringImpl__var_folders_5l_0xn052bn6dgb9z7pfk8bbg740000gn_T_main_d61985_mi_0,((int (*)(id, SEL))(void *)objc_msgSend)((id)loveLight, sel_registerName("color")));
-        }
+    Light *loveLight = __cself->loveLight; // bound by copy
+    NSLog((NSString *)&__NSConstantStringImpl__var_folders_yf_3v_c713x5898zz9d49t0rd140000gn_T_main_81cd17_mi_1,((NSString *(*)(id, SEL))(void *)objc_msgSend)((id)loveLight, sel_registerName("color")));
+}
 
 static void __main_block_copy_0(struct __main_block_impl_0*dst, struct __main_block_impl_0*src) {
-
-_Block_object_assign((void*)&dst->loveLight, (void*)src->loveLight, 3/*BLOCK_FIELD_IS_OBJECT*/);
-
+    _Block_object_assign((void*)&dst->loveLight, (void*)src->loveLight, 3/*BLOCK_FIELD_IS_OBJECT*/);
 }
 
 ...后省略
