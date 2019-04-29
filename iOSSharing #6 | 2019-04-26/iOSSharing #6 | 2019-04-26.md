@@ -92,20 +92,35 @@ UIKit将动画直接集成到UIView的类中，当内部的一些属性发生改
 
 <h2 id="33">3. block属性是否可以用strong修饰？</h2>
 
-block属性可以使用strong属性修饰符修饰，但是不推荐，会有内存泄漏的隐患。
+~~block属性可以使用strong属性修饰符修饰，但是不推荐，会有内存泄漏的隐患。~~
 
-首先，ARC中block用copy属性修饰符修饰是MRC时代延续的产物，提醒开发者可能存在的内存问题。同时copy的确是可以用strong来替代的。
+~~首先，ARC中block用copy属性修饰符修饰是MRC时代延续的产物，提醒开发者可能存在的内存问题。同时copy的确是可以用strong来替代的。~~
 
-我们都知道block在OC中有三种类型：
-- _NSConcreateGlobalBlock 全局的静态block，不会访问任何外部变量。
-- _NSConcreateStackBlock 栈区的block，当函数返回时会被销毁。
-- _NSConcreateMallocBlock 堆区的block，当引用计数为0时被销毁。
+~~我们都知道block在OC中有三种类型：~~
+~~- _NSConcreateGlobalBlock 全局的静态block，不会访问任何外部变量。~~
+~~- _NSConcreateStackBlock 栈区的block，当函数返回时会被销毁。~~
+~~- _NSConcreateMallocBlock 堆区的block，当引用计数为0时被销毁。~~
 
-block在MRC下可以存在于全局区、栈区和堆区，而在ARC下，block会自动从栈区拷贝到堆区（除了裸写block实现块），所以只存在于全局区和堆区。
-所以对于栈区block，MRC下处于栈区，想在作用域外调用就得copy到堆区；ARC则自动copy堆区。
+~~block在MRC下可以存在于全局区、栈区和堆区，而在ARC下，block会自动从栈区拷贝到堆区（除了裸写block实现块），所以只存在于全局区和堆区。
+所以对于栈区block，MRC下处于栈区，想在作用域外调用就得copy到堆区；ARC则自动copy堆区。~~
 
-那么这个时候问题就来了，strong属性修饰符并不能拷贝，就会有野指针错区的可能，造成Crash。这种情况很少见，但是不代表不可能发生，所以最好还是使用copy属性修饰符。
+~~那么这个时候问题就来了，strong属性修饰符并不能拷贝，就会有野指针错区的可能，造成Crash。这种情况很少见，但是不代表不可能发生，所以最好还是使用copy属性修饰符。~~
     
+更正：
+针对Block属性修饰符的问题在撰写的时候的确没有考虑周全，我们将在以下予以更正和解答。
+首先，在以下情形中block会自动从栈拷贝到堆：
+1、当 block 调用 copy 方法时，如果 block 在栈上，会被拷贝到堆上；
+2、当 block 作为函数返回值时，编译器自动将 block 作为 _Block_copy 函数，效果等同于直接调用 copy 方法；
+3、当 block 被赋值给 __strong id 类型的对象或 block 的成员变量时，编译器自动将 block 作为 _Block_copy 函数，效果等同于直接调用 copy 方法；
+4、当 block 作为参数被传入方法名带有 usingBlock 的 Cocoa Framework 方法或 GCD 的 API 时。这些方法会在内部对传递进来的 block 调用 copy 或 _Block_copy 进行拷贝;
+
+那针对上述自动拷贝的情况我们做一个实验：
+ARC下strong修饰block，且不引用外部变量，block类型为__NSGlobalBlock
+ARC下strong修饰block，引入外部变量，block类型为__NSMallocBlock
+
+所以由此就可以理解为ARC下strong修饰的block并没有处于栈区的可能，也就不存在作用域结束栈区内容销毁野指针的问题了。
+但是为了保证修饰符和block特性的一致性，使用copy修饰符仍然是最为合适的。
+
 ---
 
 <h2 id="34">4. 什么场景下才需要对变量使用__block?</h2>
