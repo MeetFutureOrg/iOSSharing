@@ -108,18 +108,21 @@ UIKit将动画直接集成到UIView的类中，当内部的一些属性发生改
     
 更正：
 
+**此处感谢@buaacyg的评论反馈，同时也对撰文的不严谨深表歉意。**
+
 针对Block属性修饰符的问题在撰写的时候的确没有考虑周全，我们将在以下予以更正和解答。
 首先，在以下情形中block会自动从栈拷贝到堆：
-1、当 block 调用 copy 方法时，如果 block 在栈上，会被拷贝到堆上；
-2、当 block 作为函数返回值时，编译器自动将 block 作为 _Block_copy 函数，效果等同于直接调用 copy 方法；
-3、当 block 被赋值给 __strong id 类型的对象或 block 的成员变量时，编译器自动将 block 作为 _Block_copy 函数，效果等同于直接调用 copy 方法；
-4、当 block 作为参数被传入方法名带有 usingBlock 的 Cocoa Framework 方法或 GCD 的 API 时。这些方法会在内部对传递进来的 block 调用 copy 或 _Block_copy 进行拷贝;
+* 1、当 block 调用 copy 方法时，如果 block 在栈上，会被拷贝到堆上；
+* 2、当 block 作为函数返回值时，编译器自动将 block 作为 _Block_copy 函数，效果等同于直接调用 copy 方法；
+* 3、当 block 被赋值给 __strong id 类型的对象或 block 的成员变量时，编译器自动将 block 作为 _Block_copy 函数，效果等同于直接调用 copy 方法；
+* 4、当 block 作为参数被传入方法名带有 usingBlock 的 Cocoa Framework 方法或 GCD 的 API 时。这些方法会在内部对传递进来的 block 调用 copy 或 _Block_copy 进行拷贝;
 
 那针对上述自动拷贝的情况我们做一个实验：
+
 ARC下strong修饰block，且不引用外部变量，block类型为__NSGlobalBlock
-![](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%236%20%7C%202019-04-26/block_test_1.png)
+![](https://i.loli.net/2019/04/29/5cc6a1e28d862.png)
 ARC下strong修饰block，引入外部变量，block类型为__NSMallocBlock
-![](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%236%20%7C%202019-04-26/block_test_2.png)
+![](https://i.loli.net/2019/04/29/5cc6a1e28f584.png)
 
 所以由此就可以理解为ARC下strong修饰的block并没有处于栈区的可能，也就不存在作用域结束栈区内容销毁野指针的问题了。
 但是为了保证修饰符和block特性的一致性，使用copy修饰符仍然是最为合适的。
