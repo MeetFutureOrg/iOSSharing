@@ -43,3 +43,10 @@
 #### 3. block属性是否可以用strong修饰？
 #### 4. 什么场景下才需要对变量使用__block?
 #### 5. 运行以下GCD多线程代码，控制台将打印什么?
+
+### [#07 | 2019-05-05](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%237%20%7C%202019-05-05/iOSSharing%20%237%20%7C%202019-05-05.md)
+#### 1. id、self、super 它们从语法上有什么区别？
+#### 2. block 修改捕获变量除了用 __block 还可以怎么做？有哪些局限性？
+#### 3. 什么情况使用 weak 关键字，相比 assign 有什么不同？
+#### 4. weak属性需要在dealloc中置nil么？
+#### 5. ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
