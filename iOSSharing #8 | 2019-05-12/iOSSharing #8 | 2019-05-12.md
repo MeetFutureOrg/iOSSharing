@@ -3,10 +3,11 @@
 # 目录
 
 ## [1. NSUserDefaults 能够存储哪些类型的数据？可以存储可变数据类型吗？可以存储自定义数据类型吗？](#31)
-## [2. NSUserDefaults 存取操作是什么？它将数据存在何处？并且它是如何保持数据一致性的?](#32)
-## [3. NSUserDefaults 旧数据总能被新设置的替换吗？](#33)
-## [4. NSUserDefaults 性能如何?](#34)
-## [5. NSUserDefaults 没有存储 key 的时候默认返回什么？有什么方法区分没有 key 的情况？](#35)
+## [2. NSUserDefaults 没有存储 key 的时候默认返回什么？](#32)
+## [3. NSUserDefaults 存取操作是什么？它将数据存在何处？并且它是如何保持数据一致性的?](#33)
+## [4. NSUserDefaults 旧数据总能被新设置的替换吗？](#34)
+## [5. NSUserDefaults 性能如何?](#35)
+
 
 
 <h2 id="31">1. NSUserDefaults 能够存储哪些类型的数据？可以存储可变数据类型吗？可以存储自定义数据类型吗？</h2>
@@ -26,7 +27,13 @@
 ### （3）不可以
 自定义数据类型, 例如自定义模型, 需要先转成 `NSData` 类型才能存储
 
-<h2 id="32">2. NSUserDefaults 存取操作是什么？它将数据存在何处？并且它是如何保持数据一致性的? </h2>
+<h2 id="32">2. NSUserDefaults 没有存储 key 的时候默认返回什么？</h2>
+
+当获取对象时，默认返回`nil`
+当获取数字时，默认返回0
+当获取bool类型时，默认返回false
+
+<h2 id="33">3. NSUserDefaults 存取操作是什么？它将数据存在何处？并且它是如何保持数据一致性的? </h2>
 
 ### （1）存取方式
 ```objc
@@ -57,7 +64,7 @@ NSUserDefaults 会将访问到的 key 和 value 缓存到内存中, 下次访问
 AppData/Library/Preferences/Bundle\ Identifier.plist
 ```
 
-<h2 id="33">3. NSUserDefaults 旧数据总能被新设置的替换吗？</h2>
+<h2 id="34">4. NSUserDefaults 旧数据总能被新设置的替换吗？</h2>
 并不一定, 在使用 `registerDefaults` 来注册默认时, 旧值不一定被替换
 
 官方注释:
@@ -90,11 +97,8 @@ NSDictionary *defaultValues = [NSDictionary dictionaryWithObjectsAndKeys: @"blac
 ```
 这时, NSUserDefaults 内 @"color" 依然为 @"red", 但多了 @"username" = @"tomson"
 
-<h2 id="34">4. NSUserDefaults 性能如何? </h2>
+<h2 id="35">5. NSUserDefaults 性能如何? </h2>
 
 从性能上分析, 缓存的机制带来了一定的性能提升, 通过一些网上的文章了解到在10万个key的情况下, 通过`NSUserDefaults`来读取value是1ms级别的, 然而当你从plist文件中直接读取, 需要100ms的级别开销, 但是写是个相反的结果, 要是你写1个10万条数据到plist文件中是1s级别的开销，而同时写入10万条`NSUserDefaults`键值对则需要10s级别的延迟. 我们都知道在创建key/value时, 程序需要在内存中也创建一个相应的映射关系, 然后系统会时不时调用`synchronsize`方法同步数据, 很多的方法会导致创建key/value pair被阻塞
 
 总的来说, 使用`NSUserDefaults`是比较高效的, 但是不能大量的将数据通过 NSUserDefaults 中
-<h2 id="35">NSUserDefaults 没有存储 key 的时候默认返回什么？有什么方法区分没有 key 的情况？</h2>
-
-在 Key 不存在时, 默认返回 `nil`, 区分的方法就是判断是否为空啦
