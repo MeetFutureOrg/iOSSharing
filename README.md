@@ -50,3 +50,10 @@
 #### 3. 什么情况使用 weak 关键字，相比 assign 有什么不同？
 #### 4. weak属性需要在dealloc中置nil么？
 #### 5. ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
+
+### [#08 | 2019-05-12](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%238%20%7C%202019-05-12/iOSSharing%20%238%20%7C%202019-05-12.md)
+#### 1. NSUserDefaults 能够存储哪些类型的数据？可以存储可变数据类型吗？可以存储自定义数据类型吗？
+#### 2. NSUserDefaults 没有存储 key 的时候默认返回什么？
+#### 3. NSUserDefaults 存取操作是什么？它将数据存在何处？并且它是如何保持数据一致性的?
+#### 4. NSUserDefaults 旧数据总能被新设置的替换吗？
+#### 5. NSUserDefaults 性能如何?
