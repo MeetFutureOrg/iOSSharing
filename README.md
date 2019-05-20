@@ -57,3 +57,10 @@
 #### 3. NSUserDefaults 存取操作是什么？它将数据存在何处？并且它是如何保持数据一致性的?
 #### 4. NSUserDefaults 旧数据总能被新设置的替换吗？
 #### 5. NSUserDefaults 性能如何?
+
+### [#09 | 2019-05-19](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%239%20%7C%202019-05-19/iOSSharing%20%239%20%7C%202019-05-19.md)
+#### 1. setNeedsLayout、layoutIfNeeded与layoutSubviews区别？
+#### 2. UIView与CALayer的区别？
+#### 3. loadView什么时候被调用？它有什么作用？默认实现是怎么样的？
+#### 4. UIViewController的完整生命周期？
+#### 5. UIView动画支持的属性有哪些？
