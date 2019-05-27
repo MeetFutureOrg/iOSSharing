@@ -1,5 +1,5 @@
 # iOS Sharing
-**Knowledge points about iOS, weekly update.**
+**Knowledge points about iOS.**
 
 ### [#01 | 2019-03-23](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%231%20%7C%202019-03-23/iOSSharing%20%231%20%7C%202019-03-23.md)
 #### 1、Runtime存在的意义是什么?
@@ -64,3 +64,11 @@
 #### 3. loadView什么时候被调用？它有什么作用？默认实现是怎么样的？
 #### 4. UIViewController的完整生命周期？
 #### 5. UIView动画支持的属性有哪些？
+
+### [#10 | 2019-05-27](https://github.com/MeetFutureOrg/iOSSharing/blob/master/iOSSharing%20%2310%20%7C%202019-05-27/iOSSharing%20%2310%20%7C%202019-05-27.md)
+
+#### 1. Category、 Extension和继承的区别？
+#### 2. isKindOfClass、isMemberOfClass作用分别是什么？
+#### 3. 开发中逆向传值的方式有哪些？
+#### 4. 开发中方法延迟执行的方式有哪些？
+#### 5. +load 和 +initialize 的区别是什么？
